@@ -1,0 +1,9 @@
+.tableHasil table, th, td{
+    border: 1px solid black;
+    padding: 10px 20px 10px 20px;
+}
+
+.tableHasil table tr:nth-child(1){
+    background-color: navy;
+    color: white;
+}
