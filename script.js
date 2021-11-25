@@ -1,4 +1,5 @@
-const searchButton = document.querySelector('.search-button');
+// const searchButton = document.querySelector('.search-button');
+const inputKeyword = document.querySelector('.input-keyword');
 
 function showCards(p){
    return ` <div class="col-md-3 my-3">
@@ -126,7 +127,7 @@ function showDetail(p){
    `;
 }
 
-searchButton.addEventListener('click', function(){
+inputKeyword.addEventListener('input', function(){
    const inputKeyword = document.querySelector('.input-keyword');
    fetch('https://api-mobilespecs.azharimm.site/v2/search?query=' + inputKeyword.value)
       .then(response => response.json())
