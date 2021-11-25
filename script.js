@@ -4,9 +4,9 @@ const inputKeyword = document.querySelector('.input-keyword');
 function showCards(p){
    return ` <div class="col-md-3 my-3">
                <div class="card">
-                  <img src="${p.image}" class="card-img-top" alt="phone image">
+                  <img src="${p.image}" class="card-img-top w-75 d-block mx-auto mt-3" alt="phone image">
                   <div class="card-body">
-                     <h5 class="card-title">${p.phone_name}</h5>
+                     <h5 class="card-title">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
                      <button type="button" class="btn btn-primary modal-detail-button" data-toggle="modal" data-target="#movieDetailModal" data-slug=${p.slug}>
                         Show detail
                      </button>
@@ -65,7 +65,7 @@ function showDetail(p){
       }
    </style>
    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name}</h5>
+      <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
          <span aria-hidden="true">&times;</span>
       </button>
