@@ -2,7 +2,7 @@
 const inputKeyword = document.querySelector('.input-keyword');
 
 function showCards(p){
-   return ` <div class="col-md-3 my-3">
+   return /*html*/` <div class="col-md-3 my-3">
                <div class="card">
                   <img src="${p.image}" class="card-img-top w-75 d-block mx-auto mt-3" alt="phone image">
                   <div class="card-body">
@@ -16,7 +16,7 @@ function showCards(p){
 }
 
 function showCarouselImage(image){
-   return `
+   return /*html*/`
    <div class="carousel-item">
       <img class="d-block mx-auto w-50" src="${image}" alt="First slide">
    </div>
@@ -27,12 +27,12 @@ function specification(specs){
    // console.log(specs);
    let subSpec = '';
    specs.specs.forEach(subSpecs => {
-      subSpec +=`<tr>
+      subSpec += /*html*/`<tr>
                <td>${subSpecs.key}</td>
                <td>${subSpecs.val}</td>
             </tr>`
    });
-   return `
+   return /*html*/`
       <div class="row mt-3">
          <div class="col-md">
             <table class="table table-striped">
@@ -57,7 +57,7 @@ function showDetail(p){
    let specifications = '';
    p.specifications.forEach(specs => specifications += specification(specs));
 
-   return `
+   return /*html*/`
    <style>
       .carousel-control-next,
       .carousel-control-prev /*, .carousel-indicators */ {
