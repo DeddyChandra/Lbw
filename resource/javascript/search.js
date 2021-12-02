@@ -143,7 +143,8 @@ function removeCompareItem(item){
    compareItem.splice(removeIndex, 1);
    document.querySelector('#' + replacePlus(item)).remove();
    document.querySelector('#compare_' + replacePlus(item)).checked = false;
-   console.log(compareItem);
+   // console.log(compareItem);
+
 }
 
 inputKeyword.addEventListener('input', function(){
@@ -200,6 +201,12 @@ inputKeyword.addEventListener('input', function(){
                      const slug = this.dataset.slug;
                      icon.addEventListener('click',function(){
                         removeCompareItem(slug);
+                        if(compareItem.length == 0){
+                           openCompareButton.classList.add('invisible');
+                        }
+                        else{
+                           openCompareButton.classList.remove('invisible');
+                        }
                      })
                      span.textContent = this.dataset.name + " ";
                      span.appendChild(icon);
@@ -224,13 +231,15 @@ inputKeyword.addEventListener('input', function(){
                   removeCompareItem(this.dataset.slug);
                   // console.log(this.dataset.slug +  " unchecked");
                }
-               // totalCompareBadge.textContent = compareItem.length;
+               
                if(compareItem.length == 0){
                   openCompareButton.classList.add('invisible');
                }
                else{
                   openCompareButton.classList.remove('invisible');
                }
+               // totalCompareBadge.textContent = compareItem.length;
+               console.log(compareItem);
             })
          })
       });
