@@ -8,10 +8,15 @@
 				$controller = new Controller();
 				echo $controller->view_search();
 				break;
-				case $baseURL. '/brands';
+			case $baseURL. '/compare';
 				require_once 'Controller/controller.php';
 				$controller = new Controller();
-				echo $controller->view_branch();
+				echo $controller->view_compare();
+				break;
+			case $baseURL. '/brands';
+				require_once 'Controller/controller.php';
+				$controller = new Controller();
+				echo $controller->view_brands();
 				break;
 			default:
 				echo "Page not Found 404";

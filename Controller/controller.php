@@ -7,7 +7,11 @@
          return view::createView('search.php',[]);
       }
 
-      public function view_branch(){
+      public function view_compare(){
+         return view::createView('compare.php',[]);
+      }
+
+      public function view_brands(){
          return view::createView('search.php',[]);
       }
    }
