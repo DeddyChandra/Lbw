@@ -12,7 +12,7 @@
       }
 
       public function view_brands(){
-         return view::createView('search.php',[]);
+         return view::createView('brands.php',[]);
       }
    }
 ?>
