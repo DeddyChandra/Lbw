@@ -1,5 +1,11 @@
 <script src="resource/javascript/search.js" defer></script>
 
+<nav aria-label="breadcrumb">
+   <ol class="breadcrumb">
+      <li class="breadcrumb-item" aria-current="page">Szearch</li>
+   </ol>
+</nav>
+
 <div class="container">
    <div class="row mt-5">
       <div class="col-md">
