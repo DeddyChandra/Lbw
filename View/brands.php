@@ -9,21 +9,11 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
 <body>
-   <div class="container">
-      <!-- <div class="row mt-5">
-         <div class="col-md-10">
-            <div class="input-group mb-3">
-               <input type="text" class="form-control input-keyword" placeholder="Search phone by name">
-               <div class="input-group-append">
-                  <button class="btn btn-primary search-button" type="button" id="button-addon2">Search</button>
-               </div>
-            </div>
-         </div>
-      </div> -->
-      <div class="row phones-container">
-         <ul class="list-group" id="js-container">
-            
-         </ul>
+   <div class="container-fluid" style="height:1em"></div>
+   <div class="container-fluid m-2">
+      <div class="row row-cols-3 phones-container" id="js-container">
+         <!-- <ul class="list-group" id="js-container"></ul> -->
+         
       </div>
    </div>
 </body>
