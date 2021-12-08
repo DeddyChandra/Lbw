@@ -148,10 +148,10 @@ function showCards(p){
                    .then(response => {
                       // console.log(response.data.phone_images[0]);
                       const phoneDetail = showDetail(response.data);
- 
+                     
                       const phoneDetailModal = document.querySelector('.phone-detail-modal');
                       phoneDetailModal.innerHTML = phoneDetail;
- 
+                        console.log(phoneDetailModal);
                       const carouselItem = document.querySelectorAll('.carousel-item');
                       carouselItem[0].classList.add('active');
                    })
