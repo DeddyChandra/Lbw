@@ -5,18 +5,31 @@ const openCompareButton = document.querySelector('#openCompareButton');
 // const totalCompareBadge =  openCompareButton.querySelector('#totalCompareBadge');
 
 function showCards(p){
+   // /*html*/ `                              `
    return /*html*/` <div class="col-md-3 my-3">
                <div class="card">
                   <img src="${p.image}" class="card-img-top w-75 d-block mx-auto mt-3" alt="phone image">
                   <div class="card-body">
-                     <h5 class="card-title">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-                     <button type="button" class="btn btn-primary modal-detail-button" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
-                        Show detail
-                     </button>
-                     <div class= "float-right">
-                        <label for="compare_${p.slug}">Compare</label>
-                        <input class="compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''}>
-                     </div> 
+                     <div class="container">
+                        <div class="row">
+                           <div class="col">
+                              <h5 class="card-title">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-6">
+                              <button type="button" class="btn btn-primary modal-detail-button" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
+                                 Detail
+                              </button>
+                           </div>
+                           <div class="col-6">
+                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                 <input type="checkbox" class="btn-check compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''} autocomplete="off">
+                                 <label class="btn btn-outline-success" for="compare_${p.slug}">Compare</label>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </div>    
             </div>`;
@@ -143,7 +156,8 @@ function removeCompareItem(item){
    compareItem.splice(removeIndex, 1);
    document.querySelector('#' + replacePlus(item)).remove();
    document.querySelector('#compare_' + replacePlus(item)).checked = false;
-   console.log(compareItem);
+   // console.log(compareItem);
+
 }
 
 inputKeyword.addEventListener('input', function(){
@@ -200,12 +214,18 @@ inputKeyword.addEventListener('input', function(){
                      const slug = this.dataset.slug;
                      icon.addEventListener('click',function(){
                         removeCompareItem(slug);
+                        if(compareItem.length == 0){
+                           openCompareButton.classList.add('invisible');
+                        }
+                        else{
+                           openCompareButton.classList.remove('invisible');
+                        }
                      })
                      span.textContent = this.dataset.name + " ";
                      span.appendChild(icon);
                      span.classList.add("badge");
-                     span.classList.add("badge-pill");
-                     span.classList.add("badge-info");
+                     span.classList.add("rounded-pill");
+                     span.classList.add("bg-success");
                      span.classList.add("p-2");
                      span.classList.add("mx-1");
                      span.id = replacePlus(this.dataset.slug);
@@ -224,13 +244,15 @@ inputKeyword.addEventListener('input', function(){
                   removeCompareItem(this.dataset.slug);
                   // console.log(this.dataset.slug +  " unchecked");
                }
-               // totalCompareBadge.textContent = compareItem.length;
+               
                if(compareItem.length == 0){
                   openCompareButton.classList.add('invisible');
                }
                else{
                   openCompareButton.classList.remove('invisible');
                }
+               // totalCompareBadge.textContent = compareItem.length;
+               console.log(compareItem);
             })
          })
       });

@@ -23,4 +23,7 @@ class Controller
    {
       return view::createView('topbyfans.php', []);
    }
+    public function view_brands(){
+       return view::createView('brands.php',[]);
+    }
 }
