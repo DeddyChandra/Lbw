@@ -258,4 +258,3 @@ openCompareButton.addEventListener('click', function(){
 
 });
 
-

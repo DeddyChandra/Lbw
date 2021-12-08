@@ -1,5 +1,5 @@
 <?php
-require 'controller/services/view.php';
+require 'Controller/services/view.php';
 
 class Controller
 {
@@ -23,7 +23,4 @@ class Controller
    {
       return view::createView('topbyfans.php', []);
    }
-    public function view_brands(){
-       return view::createView('brands.php',[]);
-    }
 }
