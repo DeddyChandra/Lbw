@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			require_once 'Controller/controller.php';
 			$controller = new Controller();
 			echo $controller->view_topByInterest();
+			break;
 		case $baseURL . '/top-by-fans';
 			require_once 'Controller/controller.php';
 			$controller = new Controller();
