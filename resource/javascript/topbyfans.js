@@ -3,23 +3,24 @@ const inputKeyword = document.querySelector('.input-keyword');
 let compareItem = [];
 const openCompareButton = document.querySelector('#openCompareButton');
 // const totalCompareBadge =  openCompareButton.querySelector('#totalCompareBadge');
+let no = [1,2,3,4,5,6,7,8,9,10];
+let i = 1;
 
 function showCards(p){
-   return /*html*/` <div class="col-md-3 my-3">
-               <div class="card">
-                  <img src="${p.image}" class="card-img-top w-75 d-block mx-auto mt-3" alt="phone image">
-                  <div class="card-body">
-                     <h5 class="card-title">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-                     <button type="button" class="btn btn-primary modal-detail-button" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
-                        Show detail
-                     </button>
-                     <div class= "float-right">
-                        <label for="compare_${p.slug}">Compare</label>
-                        <input class="compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''}>
-                     </div> 
-                  </div>
-               </div>    
-            </div>`;
+   return /*html*/` 
+   <div class="card" style="margin-bottom:20px;">
+      <div class="card-body" style="display:inline;">
+         <h5 style="width:5%; float:left; margin-top:7px">${no[i], i++}<h5>
+         <button type="button" class="btn btn-primary modal-detail-button float-left" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
+            Show detail
+         </button>   
+         <h5 class="card-title float-left" style="display:inline; margin-left:20px;">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
+         <div class= "float-right" style="">
+            <label for="compare_${p.slug}">Compare</label>
+            <input class="compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''}>
+         </div> 
+      </div>
+   </div>`;
 }
 
 function showCarouselImage(image){
@@ -146,9 +147,7 @@ function removeCompareItem(item){
    console.log(compareItem);
 }
 
-inputKeyword.addEventListener('input', function(){
-   const inputKeyword = document.querySelector('.input-keyword');
-   fetch('https://api-mobilespecs.azharimm.site/v2/search?query=' + inputKeyword.value)
+   fetch('https://api-mobilespecs.azharimm.site/v2/top-by-fans')
       .then(response => response.json())
       .then(response => {
          // const phones = response.
@@ -159,7 +158,7 @@ inputKeyword.addEventListener('input', function(){
          // console.log(phones[0]);
          phones.forEach(p => cards += showCards(p));
          // console.log(cards);
-         const phonesContainer = document.querySelector('.phones-container');
+         const phonesContainer = document.querySelector('.topByFansDiv');
          phonesContainer.innerHTML = cards;
 
          const modalDetailButton = document.querySelectorAll('.modal-detail-button');
@@ -200,18 +199,18 @@ inputKeyword.addEventListener('input', function(){
                      const slug = this.dataset.slug;
                      icon.addEventListener('click',function(){
                         removeCompareItem(slug);
-                    })
-                    span.textContent = this.dataset.name + " ";
-                    span.appendChild(icon);
-                    span.classList.add("badge");
-                    span.classList.add("badge-pill");
-                    span.classList.add("badge-info");
-                    span.classList.add("p-2");
-                    span.classList.add("mx-1");
-                    span.id = replacePlus(this.dataset.slug);
-                    compareBadges.appendChild(span);
-                    compareItem.push(replacePlus(this.dataset.slug));
-                    console.log(compareItem);
+                     })
+                     span.textContent = this.dataset.name + " ";
+                     span.appendChild(icon);
+                     span.classList.add("badge");
+                     span.classList.add("badge-pill");
+                     span.classList.add("badge-info");
+                     span.classList.add("p-2");
+                     span.classList.add("mx-1");
+                     span.id = replacePlus(this.dataset.slug);
+                     compareBadges.appendChild(span);
+                     compareItem.push(replacePlus(this.dataset.slug));
+                     console.log(compareItem);
 
 
                      // console.log(this.dataset.slug +  " checked");
@@ -234,7 +233,7 @@ inputKeyword.addEventListener('input', function(){
             })
          })
       });
-});
+// });
 
 openCompareButton.addEventListener('click', function(){
    // let p1, p2, p3;
@@ -258,4 +257,5 @@ openCompareButton.addEventListener('click', function(){
    window.open(`compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
 
 });
+
 
