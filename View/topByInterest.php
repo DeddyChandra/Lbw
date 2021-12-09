@@ -13,6 +13,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Phone Name</th>
                 <th scope="col">Hits</th>
+				<th scope="col"></th>
             </tr>
         </thead>
         <tbody class="phones-container">

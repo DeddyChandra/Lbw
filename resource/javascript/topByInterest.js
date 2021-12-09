@@ -1,11 +1,29 @@
 var rank = 0;
+var phoneData = "";
+/*
+async function getAPIData(p){
+	const resp = await fetch(p);
+	phoneData = await resp.json();
+	console.log(phoneData.data);
+	
+	showDetail(phoneData.data);
+	onClick="getAPIData('${p.detail}')"
+}*/
+
 function showCards(p){
     rank++;
-    return /*html*/` <tr>
+	return /*html*/` <tr>
     <th scope="row">${rank}</th>
     <td>${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</td>
     <td>${p.hits}</td>
-  </tr>`;
+	<td>
+		<div class="col-6">
+            <button type="button" class="btn btn-primary btn-sm modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
+                Show Detail
+            </button>
+        </div>
+	</td>
+	</tr>`;
              
  }
 
@@ -45,9 +63,9 @@ function showCards(p){
  }
  
  function showDetail(p){
+	console.log(p);
     let carouselImage = '';
     p.phone_images.forEach(image => carouselImage += showCarouselImage(image));
- 
     let specifications = '';
     p.specifications.forEach(specs => specifications += specification(specs));
  
@@ -124,6 +142,10 @@ function showCards(p){
  function replacePlus(string){
     return string.replace('+', 'plus');
  }
+ 
+ function myAlertTest(){
+	 alert("CLICKED");
+ }
 
     fetch('https://api-mobilespecs.azharimm.site/v2/top-by-interest')
        .then(response => response.json())
@@ -146,7 +168,8 @@ function showCards(p){
                 fetch('https://api-mobilespecs.azharimm.site/v2/' + slug)
                    .then(response => response.json())
                    .then(response => {
-                      // console.log(response.data.phone_images[0]);
+                      //console.log(response.data.phone_images[0]);
+					  
                       const phoneDetail = showDetail(response.data);
                      
                       const phoneDetailModal = document.querySelector('.phone-detail-modal');
