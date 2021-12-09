@@ -10,7 +10,7 @@
 <body>
    <div class="container-fluid" style="height:1em"></div>
    <div class="container-fluid mt-2 px-5">
-      <div class="row row-cols-3 phones-container" id="js-container">
+      <div class="row row-cols-auto phones-container" id="js-container">
          
       </div>
    </div>
