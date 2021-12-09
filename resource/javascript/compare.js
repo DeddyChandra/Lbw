@@ -63,9 +63,9 @@ async function compareResult(){
       <thead>
          <tr>
             <th scope="col" colspan="2">Specification</th>
-            <th>${p0Spec.phone_name}</th>
-            <th>${p1Spec.phone_name}</th>
-            <th>${p2Spec.phone_name}</th>
+            <th>${p0Spec.brand.charAt(0).toUpperCase() + p0Spec.brand.slice(1) + " " + p0Spec.phone_name}</th>
+            <th>${p1Spec.brand.charAt(0).toUpperCase() + p1Spec.brand.slice(1) + " " + p1Spec.phone_name}</th>
+            <th>${p2Spec.brand.charAt(0).toUpperCase() + p2Spec.brand.slice(1) + " " + p2Spec.phone_name}</th>
          </tr>
       </thead>
       <tbody>

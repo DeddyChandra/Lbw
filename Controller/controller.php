@@ -24,6 +24,11 @@ class Controller
       return view::createView('brands.php', []);
    }
 
+   public function view_latest()
+   {
+      return view::createView('latest.php', []);
+   }
+
    public function view_topByInterest()
    {
       return view::createView('topByInterest.php', []);
