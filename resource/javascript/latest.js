@@ -1,8 +1,16 @@
-// const searchButton = document.querySelector('.search-button');
-const inputKeyword = document.querySelector('.input-keyword');
-let compareItem = [];
-const openCompareButton = document.querySelector('#openCompareButton');
-// const totalCompareBadge =  openCompareButton.querySelector('#totalCompareBadge');
+const api_get_latest = "https://api-mobilespecs.azharimm.site/v2/latest";
+
+async function getData(api_url) {
+	
+	const resp = await fetch(api_url).then(response=>response.json()).then(
+		response=>{
+			const phones = response.data.phones;
+			//console.log(phones);
+			show(JSON.parse(JSON.stringify(phones)));
+			//console.log(JSON.parse(JSON.stringify(phones))[0].phone_name);
+		}
+	);
+}
 
 function showCards(p){
    // /*html*/ `                              `
@@ -18,21 +26,57 @@ function showCards(p){
                         </div>
                         <div class="row">
                            <div class="col-6">
-                              <button type="button" class="btn btn-primary modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
+                              <button type="button" class="btn btn-primary modal-detail-button" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
                                  Detail
                               </button>
-                           </div>
-                           <div class="col-6">
-                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                 <input type="checkbox" class="btn-check compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''} autocomplete="off">
-                                 <label class="btn btn-outline-success" for="compare_${p.slug}">Compare</label>
-                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>    
             </div>`;
+}
+
+function replacePlus(string){
+   return string.replace('+', 'plus');
+}
+
+function show(data){
+	
+	let cards = "";
+	
+	for(let p of Object.keys(data)){
+		
+		//console.log(data[p].phone_name);
+		cards += showCards(data[p]);
+		//console.log(cards);
+		const containerForCards = document.querySelector('.cards');
+        containerForCards.innerHTML = cards;
+		
+		const detailButton = document.querySelectorAll('.modal-detail-button');
+         detailButton.forEach(btn => {
+            btn.addEventListener('click', function(){
+               const slug = data[p].slug;
+               fetch('https://api-mobilespecs.azharimm.site/v2/' + slug)
+                  .then(response => response.json())
+                  .then(response => {
+					 //console.log('https://api-mobilespecs.azharimm.site/v2/'+slug);
+                     //console.log(response.data.phone_images[0]);
+                     const phoneDetail = showDetail(response.data);
+
+                     const phoneDetailModal = document.querySelector('.phone-detail-modal');
+                     phoneDetailModal.innerHTML = phoneDetail;
+
+                     const carouselItem = document.querySelectorAll('.carousel-item');
+                     carouselItem[0].classList.add('active');
+                  })
+            })
+         })
+		 
+	}
+	
+	
+	
 }
 
 function showCarouselImage(image){
@@ -86,24 +130,26 @@ function showDetail(p){
    </style>
    <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
    </div>
    <div class="modal-body">
       <div class="container-fluid">
          <div class="row">
             <div class="col-md">
-               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                      ${carouselImage}
                   </div>
-                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                     <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="visually-hidden">Next</span>
-                  </button>
+                     <span class="sr-only">Next</span>
+                  </a>
                </div>
                <!--<img src="${p.phone_images[0]}" alt="phone image" class="rounded mx-auto d-block w-50"> -->
             </div>
@@ -140,140 +186,9 @@ function showDetail(p){
       </div>
    </div>
    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
    </div>
    `;
 }
 
-function replacePlus(string){
-   return string.replace('+', 'plus');
-}
-
-function removeCompareItem(item){
-   const removeIndex = compareItem.indexOf(item);
-   compareItem.splice(removeIndex, 1);
-   document.querySelector('#' + replacePlus(item)).remove();
-   document.querySelector('#compare_' + replacePlus(item)).checked = false;
-   // console.log(compareItem);
-
-}
-
-function showLoading(show = true){
-   if(show){
-      return /*html*/`
-         <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
-               <span class="visually-hidden">Loading...</span>
-            </div>
-         </div>`
-   }
-   else{
-      return /*html*/`
-      <div class="d-flex justify-content-center invisible">
-         <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-         </div>
-      </div>`
-   }
-}
-
-document.querySelector('.phones-container').innerHTML = showLoading();
-fetch('https://api-mobilespecs.azharimm.site/v2/latest')
-   .then(response => response.json())
-   .then(response => {
-      // const phones = response.
-      // console.log(response)
-      // console.log(response.data.phones)
-      const phones = response.data.phones;
-      let cards = "";
-      // console.log(phones[0]);
-      phones.forEach(p => cards += showCards(p));
-      // console.log(cards);
-      const phonesContainer = document.querySelector('.phones-container');
-      phonesContainer.innerHTML = cards;
-
-      const modalDetailButton = document.querySelectorAll('.modal-detail-button');
-      modalDetailButton.forEach(btn => {
-         btn.addEventListener('click', function(){
-            const slug = this.dataset.slug;
-            fetch('https://api-mobilespecs.azharimm.site/v2/' + slug)
-               .then(response => response.json())
-               .then(response => {
-                  // console.log(response.data.phone_images[0]);
-                  const phoneDetail = showDetail(response.data);
-
-                  const phoneDetailModal = document.querySelector('.phone-detail-modal');
-                  phoneDetailModal.innerHTML = phoneDetail;
-
-                  const carouselItem = document.querySelectorAll('.carousel-item');
-                  carouselItem[0].classList.add('active');
-               })
-         })
-      })
-      const compareCheckbox = document.querySelectorAll('.compare');
-      const compareBadges = document.querySelector('.compareBadges');
-      compareCheckbox.forEach(item => {
-         // console.log(item)
-         item.addEventListener('change', function(){
-            if(this.checked){
-               if(compareItem.length >= 3){
-                  alert('Cannot compare more than 3 items at once!');
-                  this.checked = false;
-               }
-               else{
-                  let span = document.createElement("span");
-                  let icon = document.createElement("i");
-                  icon.classList.add("fas");
-                  icon.classList.add("fa-times-circle");
-                  icon.classList.add("pointer");
-                  icon.id = "delete_" + replacePlus(this.dataset.slug);
-                  const slug = this.dataset.slug;
-                  icon.addEventListener('click',function(){
-                     removeCompareItem(slug);
-                     if(compareItem.length == 0){
-                        openCompareButton.classList.add('invisible');
-                     }
-                     else{
-                        openCompareButton.classList.remove('invisible');
-                     }
-                  })
-                  span.textContent = this.dataset.name + " ";
-                  span.appendChild(icon);
-                  span.classList.add("badge");
-                  span.classList.add("rounded-pill");
-                  span.classList.add("bg-success");
-                  span.classList.add("p-2");
-                  span.classList.add("mx-1");
-                  span.id = replacePlus(this.dataset.slug);
-                  compareBadges.appendChild(span);
-                  compareItem.push(replacePlus(this.dataset.slug));
-                  console.log(compareItem);
-
-
-                  // console.log(this.dataset.slug +  " checked");
-               }
-            }
-            else{
-               // const removeIndex = compareItem.indexOf(this.dataset.slug);
-               // compareItem.splice(removeIndex, 1);
-               // document.querySelector("#"+this.dataset.slug).remove();
-               removeCompareItem(this.dataset.slug);
-               // console.log(this.dataset.slug +  " unchecked");
-            }
-            
-            if(compareItem.length == 0){
-               openCompareButton.classList.add('invisible');
-            }
-            else{
-               openCompareButton.classList.remove('invisible');
-            }
-            // totalCompareBadge.textContent = compareItem.length;
-            console.log(compareItem);
-         })
-      })
-   });
-
-openCompareButton.addEventListener('click', function(){
-   window.open(`compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
-});
-
+getData(api_get_latest);
