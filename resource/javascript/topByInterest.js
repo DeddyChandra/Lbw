@@ -62,82 +62,80 @@ function showCards(p){
     `
  }
  
- function showDetail(p){
-	console.log(p);
-    let carouselImage = '';
-    p.phone_images.forEach(image => carouselImage += showCarouselImage(image));
-    let specifications = '';
-    p.specifications.forEach(specs => specifications += specification(specs));
- 
-    return /*html*/`
-    <style>
-       .carousel-control-next,
-       .carousel-control-prev /*, .carousel-indicators */ {
-          filter: invert(100%);
-       }
-    </style>
-    <div class="modal-header">
-       <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-       </button>
-    </div>
-    <div class="modal-body">
-       <div class="container-fluid">
-          <div class="row">
-             <div class="col-md">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                   <div class="carousel-inner">
-                      ${carouselImage}
-                   </div>
-                   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                   </a>
-                   <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                   </a>
-                </div>
-                <!--<img src="${p.phone_images[0]}" alt="phone image" class="rounded mx-auto d-block w-50"> -->
-             </div>
-          </div>
-          <div class="row mt-3">
-             <div class="col-md">
-                <table class="table table-striped">
-                   <tbody>
-                      <tr>
-                         <td>Brand</td>
-                         <td>${p.brand}</td>
-                      </tr>
-                      <tr>
-                         <td>Release date</td>
-                         <td>${p.release_date}</td>
-                      </tr>
-                      <tr>
-                         <td>Dimension</td>
-                         <td>${p.dimension}</td>
-                      </tr>
-                      <tr>
-                         <td>Operating System</td>
-                         <td>${p.os}</td>
-                      </tr>
-                      <tr>
-                         <td>Storage</td>
-                         <td>${p.storage}</td>
-                      </tr>
-                   </tbody>
-                </table>
-             </div>
-          </div>
-          ${specifications}
-       </div>
-    </div>
-    <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    </div>
-    `;
- }
+function showDetail(p){
+   let carouselImage = '';
+   p.phone_images.forEach(image => carouselImage += showCarouselImage(image));
+
+   let specifications = '';
+   p.specifications.forEach(specs => specifications += specification(specs));
+
+   return /*html*/`
+   <style>
+      .carousel-control-next,
+      .carousel-control-prev /*, .carousel-indicators */ {
+         filter: invert(100%);
+      }
+   </style>
+   <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   </div>
+   <div class="modal-body">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md">
+               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                     ${carouselImage}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="visually-hidden">Next</span>
+                  </button>
+               </div>
+               <!--<img src="${p.phone_images[0]}" alt="phone image" class="rounded mx-auto d-block w-50"> -->
+            </div>
+         </div>
+         <div class="row mt-3">
+            <div class="col-md">
+               <table class="table table-striped">
+                  <tbody>
+                     <tr>
+                        <td>Brand</td>
+                        <td>${p.brand}</td>
+                     </tr>
+                     <tr>
+                        <td>Release date</td>
+                        <td>${p.release_date}</td>
+                     </tr>
+                     <tr>
+                        <td>Dimension</td>
+                        <td>${p.dimension}</td>
+                     </tr>
+                     <tr>
+                        <td>Operating System</td>
+                        <td>${p.os}</td>
+                     </tr>
+                     <tr>
+                        <td>Storage</td>
+                        <td>${p.storage}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         ${specifications}
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+   </div>
+   `;
+}
  
  function replacePlus(string){
     return string.replace('+', 'plus');
