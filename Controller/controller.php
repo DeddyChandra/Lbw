@@ -1,5 +1,5 @@
 <?php
-require 'controller/services/view.php';
+require 'Controller/services/view.php';
 
 class Controller
 {
@@ -14,7 +14,7 @@ class Controller
       return view::createView('compare.php', []);
    }
 
-   public function view_topbyfans()
+   public function view_topByFans()
    {
       return view::createView('topbyfans.php', []);
    }
@@ -24,8 +24,18 @@ class Controller
       return view::createView('brands.php', []);
    }
 
+   public function view_latest()
+   {
+      return view::createView('latest.php', []);
+   }
+
    public function view_topByInterest()
    {
       return view::createView('topByInterest.php', []);
+   }
+
+   public function view_Charts()
+   {
+      return view::createView('chart.php', []);
    }
 }

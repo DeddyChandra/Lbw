@@ -1,15 +1,17 @@
 var rank = 0;
 function showCards(p){
-    rank++;
-    return /*html*/` <tr>
-    <th scope="row">${rank}</th>
-    <td><button type="button" class="btn modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
-    ${p.phone_name.charAt(0) + p.phone_name.slice(1)}
- </button></td>
-    <td>${p.hits}</td>
-  </tr>`;
-             
- }
+   rank++;
+   // /*html*/ `
+   return /*html*/` <tr>
+      <th scope="row">${rank}</th>
+      <td>
+         <button type="button" class="btn modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
+            ${p.phone_name.charAt(0) + p.phone_name.slice(1)}
+         </button>
+      </td>
+      <td>${p.hits} Users</td>
+   </tr>`;                             
+}
 
  function showCarouselImage(image){
     return /*html*/`
