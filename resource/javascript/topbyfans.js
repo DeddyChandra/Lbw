@@ -1,26 +1,21 @@
-// const searchButton = document.querySelector('.search-button');
+
 const inputKeyword = document.querySelector('.input-keyword');
 let compareItem = [];
 const openCompareButton = document.querySelector('#openCompareButton');
-// const totalCompareBadge =  openCompareButton.querySelector('#totalCompareBadge');
 let no = [1,2,3,4,5,6,7,8,9,10];
 let i = 1;
 
 function showCards(p){
-   return /*html*/` 
-   <div class="card" style="margin-bottom:20px;">
-      <div class="card-body" style="display:inline;">
-         <h5 style="width:5%; float:left; margin-top:7px">${no[i], i++}<h5>
-         <button type="button" class="btn btn-primary modal-detail-button float-left" data-toggle="modal" data-target="#phoneDetailModal" data-slug=${p.slug}>
-            Show detail
-         </button>   
-         <h5 class="card-title float-left" style="display:inline; margin-left:20px;">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-         <div class= "float-right" style="">
-            <label for="compare_${p.slug}">Compare</label>
-            <input class="compare" id="compare_${replacePlus(p.slug)}" type="checkbox" data-slug=${p.slug} data-name="${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}" ${compareItem.includes(p.slug) ? 'checked' : ''}>
-         </div> 
-      </div>
-   </div>`;
+   // /*html*/ `
+   return /*html*/` <tr>
+      <th scope="row">${no[i], i++}</th>
+      <td>
+         <button type="button" class="btn modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
+            ${p.phone_name.charAt(0) + p.phone_name.slice(1)}
+         </button>
+      </td>
+      <td>${p.favorites} Users</td>
+   </tr>`;                             
 }
 
 function showCarouselImage(image){
@@ -74,26 +69,24 @@ function showDetail(p){
    </style>
    <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLongTitle">${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-      </button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
    </div>
    <div class="modal-body">
       <div class="container-fluid">
          <div class="row">
             <div class="col-md">
-               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                   <div class="carousel-inner">
                      ${carouselImage}
                   </div>
-                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                     <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                     <span class="sr-only">Next</span>
-                  </a>
+                     <span class="visually-hidden">Next</span>
+                  </button>
                </div>
                <!--<img src="${p.phone_images[0]}" alt="phone image" class="rounded mx-auto d-block w-50"> -->
             </div>
@@ -130,7 +123,7 @@ function showDetail(p){
       </div>
    </div>
    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
    </div>
    `;
 }
@@ -144,20 +137,34 @@ function removeCompareItem(item){
    compareItem.splice(removeIndex, 1);
    document.querySelector('#' + replacePlus(item)).remove();
    document.querySelector('#compare_' + replacePlus(item)).checked = false;
-   console.log(compareItem);
+   // console.log(compareItem);
+
 }
 
-   fetch('https://api-mobilespecs.azharimm.site/v2/top-by-fans')
+function showLoading(show = true){
+   if(show){
+      return /*html*/`
+         <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+               <span class="visually-hidden">Loading...</span>
+            </div>
+         </div>`
+   }
+   else{
+      return /*html*/`
+      <div class="d-flex justify-content-center invisible">
+         <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+         </div>
+      </div>`
+   }
+}
+fetch('https://api-mobilespecs.azharimm.site/v2/top-by-fans')
       .then(response => response.json())
       .then(response => {
-         // const phones = response.
-         // console.log(response)
-         // console.log(response.data.phones)
          const phones = response.data.phones;
          let cards = "";
-         // console.log(phones[0]);
          phones.forEach(p => cards += showCards(p));
-         // console.log(cards);
          const phonesContainer = document.querySelector('.topByFansDiv');
          phonesContainer.innerHTML = cards;
 
@@ -199,12 +206,18 @@ function removeCompareItem(item){
                      const slug = this.dataset.slug;
                      icon.addEventListener('click',function(){
                         removeCompareItem(slug);
+                        if(compareItem.length == 0){
+                           openCompareButton.classList.add('invisible');
+                        }
+                        else{
+                           openCompareButton.classList.remove('invisible');
+                        }
                      })
                      span.textContent = this.dataset.name + " ";
                      span.appendChild(icon);
                      span.classList.add("badge");
-                     span.classList.add("badge-pill");
-                     span.classList.add("badge-info");
+                     span.classList.add("rounded-pill");
+                     span.classList.add("bg-success");
                      span.classList.add("p-2");
                      span.classList.add("mx-1");
                      span.id = replacePlus(this.dataset.slug);
@@ -223,17 +236,18 @@ function removeCompareItem(item){
                   removeCompareItem(this.dataset.slug);
                   // console.log(this.dataset.slug +  " unchecked");
                }
-               // totalCompareBadge.textContent = compareItem.length;
+               
                if(compareItem.length == 0){
                   openCompareButton.classList.add('invisible');
                }
                else{
                   openCompareButton.classList.remove('invisible');
                }
+               // totalCompareBadge.textContent = compareItem.length;
+               console.log(compareItem);
             })
          })
       });
-// });
 
 openCompareButton.addEventListener('click', function(){
    // let p1, p2, p3;
@@ -257,5 +271,4 @@ openCompareButton.addEventListener('click', function(){
    window.open(`compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
 
 });
-
 

@@ -1,5 +1,5 @@
 <?php
-require 'controller/services/view.php';
+require 'Controller/services/view.php';
 
 class Controller
 {
