@@ -13,11 +13,6 @@ class Controller
    {
       return view::createView('compare.php', []);
    }
-   
-   public function view_latest()
-   {
-	   return view::createView('latest.php', []);
-   }
 
    public function view_topByFans()
    {
