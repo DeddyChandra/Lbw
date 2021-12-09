@@ -18,11 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 			$controller = new Controller();
 			echo $controller->view_brands();
 			break;
-		case $baseURL . '/latest';
-			require_once 'Controller/controller.php';
-			$controller = new Controller();
-			echo $controller->view_latest();
-			break;
 		case $baseURL . '/top-by-interest';
 			require_once 'Controller/controller.php';
 			$controller = new Controller();
