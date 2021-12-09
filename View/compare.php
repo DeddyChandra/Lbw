@@ -4,8 +4,7 @@
   <ol class="breadcrumb m-3">
     <li class="breadcrumb-item"><a href="search">Search</a></li>
     <li class="breadcrumb-item active" aria-current="page">Compare Result</li>
+  </ol>
 </nav>
 
-<div class="container table-result">
-  
-</div>
+<div class="container table-result"></div>

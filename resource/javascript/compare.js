@@ -26,7 +26,27 @@ function searchSpecDetail(pSpec, title, key){
    }
 }
 
+function showLoading(show = true){
+   if(show){
+      return /*html*/`
+         <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+               <span class="visually-hidden">Loading...</span>
+            </div>
+         </div>`
+   }
+   else{
+      return /*html*/`
+      <div class="d-flex justify-content-center invisible">
+         <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+         </div>
+      </div>`
+   }
+}
+
 async function compareResult(){
+   document.querySelector('.table-result').innerHTML = showLoading(true);
    let p0Spec = p0 != "" ? await getPhoneSpec(p0) : null;
    let p1Spec = p1 != "" ? await getPhoneSpec(p1) : null;
    let p2Spec = p2 != "" ? await getPhoneSpec(p2) : null;
@@ -49,6 +69,7 @@ async function compareResult(){
          </tr>
       </thead>
       <tbody>
+
          <tr>
             <th scope="row">Network</th>
             <th>Technology</th>

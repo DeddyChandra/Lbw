@@ -14,16 +14,23 @@ class Controller
       return view::createView('compare.php', []);
    }
 
-   public function view_topbyfans()
+   public function view_topByFans()
    {
       return view::createView('topbyfans.php', []);
    }
 
-   public function view_brands(){
-      return view::createView('brands.php',[]);
+   public function view_brands()
+   {
+      return view::createView('brands.php', []);
    }
-   
-   public function view_topByInterest(){
-      return view::createView('topByInterest.php',[]);
+
+   public function view_topByInterest()
+   {
+      return view::createView('topByInterest.php', []);
+   }
+
+   public function view_Charts()
+   {
+      return view::createView('chart.php', []);
    }
 }

@@ -160,8 +160,28 @@ function removeCompareItem(item){
 
 }
 
+function showLoading(show = true){
+   if(show){
+      return /*html*/`
+         <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+               <span class="visually-hidden">Loading...</span>
+            </div>
+         </div>`
+   }
+   else{
+      return /*html*/`
+      <div class="d-flex justify-content-center invisible">
+         <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+         </div>
+      </div>`
+   }
+}
+
 inputKeyword.addEventListener('input', function(){
    const inputKeyword = document.querySelector('.input-keyword');
+   document.querySelector('.phones-container').innerHTML = showLoading(true);
    fetch('https://api-mobilespecs.azharimm.site/v2/search?query=' + inputKeyword.value)
       .then(response => response.json())
       .then(response => {

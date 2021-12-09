@@ -26,7 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 		case $baseURL . '/top-by-fans';
 			require_once 'Controller/controller.php';
 			$controller = new Controller();
-			echo $controller->view_topbyfans();
+			echo $controller->view_topByFans();
+			break;
+		case $baseURL . '/charts';
+			require_once 'Controller/controller.php';
+			$controller = new Controller();
+			echo $controller->view_charts();
 			break;
 		default:
 			echo "Page not Found 404";
