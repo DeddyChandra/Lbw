@@ -4,7 +4,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">No</th>
                 <th scope="col">Phone Name</th>
                 <th scope="col">Hits</th>
             </tr>

@@ -3,7 +3,9 @@ function showCards(p){
     rank++;
     return /*html*/` <tr>
     <th scope="row">${rank}</th>
-    <td>${p.phone_name.charAt(0).toUpperCase() + p.phone_name.slice(1)}</td>
+    <td><button type="button" class="btn modal-detail-button" data-bs-toggle="modal" data-bs-target="#phoneDetailModal" data-slug=${p.slug}>
+    ${p.phone_name.charAt(0) + p.phone_name.slice(1)}
+ </button></td>
     <td>${p.hits}</td>
   </tr>`;
              
@@ -124,6 +126,25 @@ function showCards(p){
  function replacePlus(string){
     return string.replace('+', 'plus');
  }
+
+ function showLoading(show = true){
+   if(show){
+      return /*html*/`
+         <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+               <span class="visually-hidden">Loading...</span>
+            </div>
+         </div>`
+   }
+   else{
+      return /*html*/`
+      <div class="d-flex justify-content-center invisible">
+         <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+         </div>
+      </div>`
+   }
+}
 
     fetch('https://api-mobilespecs.azharimm.site/v2/top-by-interest')
        .then(response => response.json())
