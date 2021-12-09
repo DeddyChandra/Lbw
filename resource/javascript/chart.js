@@ -16,6 +16,25 @@ function getData(url){
       .then(response => response);
 }
 
+function showLoading(show = true){
+   if(show){
+      return /*html*/`
+         <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+               <span class="visually-hidden">Loading...</span>
+            </div>
+         </div>`
+   }
+   else{
+      return /*html*/`
+      <div class="d-flex justify-content-center invisible">
+         <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+         </div>
+      </div>`
+   }
+}
+
 async function getDeviceWeight(p){
    let array = [];
    for(let i = 0; true; i++){
@@ -104,15 +123,24 @@ async function main(){
 
    // const samsungBrandWeight = await getDeviceWeight(await getData(samsungBrand.detail));
 
-   const samsungBrandWeight = await getDeviceWeight(await getData(samsungBrand.detail));
-   const huaweiBrandWeight = await getDeviceWeight(await getData(huaweiBrand.detail));
-   const appleBrandWeight = await getDeviceWeight(await getData(appleBrand.detail));
-   const oppoBrandWeight = await getDeviceWeight(await getData(oppoBrand.detail));
-   const xiaomiBrandWeight = await getDeviceWeight(await getData(xiaomiBrand.detail));
+   let weightChartLoading = document.querySelector('#weightChartLoading');
+   weightChartLoading.innerHTML = showLoading();
+
+   const samsungData = await getData(samsungBrand.detail);
+   const huaweiData = await getData(huaweiBrand.detail);
+   const appleData = await getData(appleBrand.detail);
+   const oppoData = await getData(oppoBrand.detail);
+   const xiaomiData = await getData(xiaomiBrand.detail);
+
+   const samsungBrandWeight = await getDeviceWeight(samsungData);
+   const huaweiBrandWeight = await getDeviceWeight(huaweiData);
+   const appleBrandWeight = await getDeviceWeight(appleData);
+   const oppoBrandWeight = await getDeviceWeight(oppoData);
+   const xiaomiBrandWeight = await getDeviceWeight(xiaomiData);
 
    console.log(samsungBrandWeight)
 
-   const weightChartE = document.getElementById('weightChart').getContext('2d');
+   const weightChartE = document.querySelector('#weightChart').getContext('2d');
    const labels = ['Device 1', 'Device 2', 'Device 3','Device 4', 'Device 5'];
    const data = {
    labels: labels,
@@ -187,6 +215,8 @@ async function main(){
       },
    };
    const weightChart = new Chart(weightChartE, config);
+   weightChartLoading.innerHTML = showLoading(false);
+   weightChartLoading.classList.remove('mt-5');
 }
 
 main();

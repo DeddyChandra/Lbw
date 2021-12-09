@@ -7,6 +7,7 @@
    <div class="row my-5">
       <div class="col-2"></div>
       <div class="col" height="400">   
+         <h1>Top 10 brands</h1>
          <canvas id="brandsChart" width="400" ></canvas>
       </div>
       <div class="col-2"></div>
@@ -14,6 +15,8 @@
    <div class="row my-5">
       <div class="col-2"></div>
       <div class="col" height="400"> 
+         <h1>Top 5 new device weight</h1>
+         <div class="mt-5" id="weightChartLoading"></div>
          <canvas id="weightChart" width="300"></canvas>
       </div>
       <div class="col-2"></div>
