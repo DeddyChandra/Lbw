@@ -2,11 +2,11 @@ Webserver : https://github.com/azharimm/phone-specs-api
 
 Our webserver : 
 <ul>
-   <a href="https://dc.deddychandra.my.id/api/samsung">Samsung Data</a>
-   <a href="https://dc.deddychandra.my.id/api/apple">Apple Data</a>
-   <a href="https://dc.deddychandra.my.id/api/huawei">Huawei Data</a>
-   <a href="https://dc.deddychandra.my.id/api/oppo">Oppo Data</a>
-   <a href="https://dc.deddychandra.my.id/api/xiaomi">Xiaomi Data</a>
+   <li><a href="https://dc.deddychandra.my.id/api/samsung">Samsung Data</a></li>
+   <li><a href="https://dc.deddychandra.my.id/api/apple">Apple Data</a></li>
+   <li><a href="https://dc.deddychandra.my.id/api/huawei">Huawei Data</a></li>
+   <li><a href="https://dc.deddychandra.my.id/api/oppo">Oppo Data</a></li>
+   <li><a href="https://dc.deddychandra.my.id/api/xiaomi">Xiaomi Data</a></li>
 </ul>
 
 <p>visit our website https://d.deddychandra.my.id/ or <a href="https://d.deddychandra.my.id/">click me!</a></p>
