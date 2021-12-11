@@ -9,7 +9,7 @@ Our webserver :
    <li><a href="https://dc.deddychandra.my.id/api/xiaomi">Xiaomi Data</a></li>
 </ul>
 
-<p>visit our website https://d.deddychandra.my.id/ or <a href="https://d.deddychandra.my.id/">click me!</a></p>
+<p>visit our website https://dc.deddychandra.my.id/ or <a href="https://dc.deddychandra.my.id/">click me!</a></p>
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
