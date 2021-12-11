@@ -1,3 +1,14 @@
+Webserver : https://github.com/azharimm/phone-specs-api
+
+Our webserver : 
+https://dc.deddychandra.my.id/api/samsung
+https://dc.deddychandra.my.id/api/apple
+https://dc.deddychandra.my.id/api/huawei
+https://dc.deddychandra.my.id/api/oppo
+https://dc.deddychandra.my.id/api/xiaomi
+
+Website link : https://dc.deddychandra.my.id/
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
