@@ -24,10 +24,9 @@
    </div>
 
    <!-- Modal -->
-   <div class="modal fade" id="phoneDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-         <div class="modal-content phone-detail-modal">
-         </div>
+   <div class="modal fade" id="phoneDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+         <div class="modal-content phone-detail-modal"></div>
       </div>
    </div>
 @endsection
