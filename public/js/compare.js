@@ -19,10 +19,10 @@ function getPhoneSpec(p){
 
 function searchSpecDetail(pSpec, title, key){
    if(pSpec == null){
-      return '-';
+      return '';
    }
    else{
-      return pSpec.specifications.find(o => o.title === title).specs.find(o => o.key === key) != undefined ? pSpec.specifications.find(o => o.title === title).specs.find(o => o.key === key).val[0] : '-';
+      return pSpec.specifications.find(o => o.title === title).specs.find(o => o.key === key) != undefined ? pSpec.specifications.find(o => o.title === title).specs.find(o => o.key === key).val[0] : '';
    }
 }
 
@@ -50,26 +50,25 @@ async function compareResult(){
    let p0Spec = p0 != "" ? await getPhoneSpec(p0) : null;
    let p1Spec = p1 != "" ? await getPhoneSpec(p1) : null;
    let p2Spec = p2 != "" ? await getPhoneSpec(p2) : null;
-   p0Spec = p0Spec.data;
-   p1Spec = p1Spec.data;
-   p2Spec = p2Spec.data;
+   p0Spec = p0Spec != null ? p0Spec.data : null;
+   p1Spec = p1Spec != null ? p1Spec.data : null;
+   p2Spec = p2Spec != null ? p2Spec.data : null;
 
-   console.log(p0Spec);
-   console.log(p1Spec);
-   console.log(p2Spec);
+   // console.log(p0Spec);
+   // console.log(p1Spec);
+   // console.log(p2Spec);
 
    const tableResult = /*html*/ `
    <table class="table">
       <thead>
          <tr>
             <th scope="col" colspan="2">Specification</th>
-            <th>${p0Spec.brand.charAt(0).toUpperCase() + p0Spec.brand.slice(1) + " " + p0Spec.phone_name}</th>
-            <th>${p1Spec.brand.charAt(0).toUpperCase() + p1Spec.brand.slice(1) + " " + p1Spec.phone_name}</th>
-            <th>${p2Spec.brand.charAt(0).toUpperCase() + p2Spec.brand.slice(1) + " " + p2Spec.phone_name}</th>
+            <th>${p0Spec != null ? p0Spec.brand.charAt(0).toUpperCase() + p0Spec.brand.slice(1) + " " + p0Spec.phone_name : ''}</th>
+            <th>${p1Spec != null ? p1Spec.brand.charAt(0).toUpperCase() + p1Spec.brand.slice(1) + " " + p1Spec.phone_name : ''}</th>
+            <th>${p2Spec != null ? p2Spec.brand.charAt(0).toUpperCase() + p2Spec.brand.slice(1) + " " + p2Spec.phone_name : ''}</th>
          </tr>
       </thead>
       <tbody>
-
          <tr>
             <th scope="row">Network</th>
             <th>Technology</th>
@@ -175,9 +174,9 @@ async function compareResult(){
          <tr>
             <th scope="row" rowspan="3">Main Camera</th>
             <th>Modules</th>
-            <td>${p0Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0]}</td>
-            <td>${p1Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0]}</td>
-            <td>${p2Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0]}</td>
+            <td>${p0Spec != null ? p0Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0] : ''}</td>
+            <td>${p1Spec != null ? p1Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0] : ''}</td>
+            <td>${p2Spec != null ? p2Spec.specifications.find(o => o.title === 'Main Camera').specs[0].val[0] : ''}</td>
          </tr>
          <tr>
             <th>Features</th>
@@ -195,9 +194,9 @@ async function compareResult(){
          <tr>
             <th scope="row" rowspan="2">Selfie Camera</th>
             <th>Modules</th>
-            <td>${p0Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0]}</td>
-            <td>${p1Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0]}</td>
-            <td>${p2Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0]}</td>
+            <td>${p0Spec != null ? p0Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0] : ''}</td>
+            <td>${p1Spec != null ? p1Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0] : ''}</td>
+            <td>${p2Spec != null ? p2Spec.specifications.find(o => o.title === 'Selfie camera').specs[0].val[0] : ''}</td>
          </tr>
          <tr>
             <th>Video</th>

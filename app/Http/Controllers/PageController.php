@@ -104,11 +104,6 @@ class PageController extends Controller{
             "huaweiWeight" => json_encode($huaweiWeight),
             "oppoWeight" => json_encode($oppoWeight),
             "xiaomiWeight" => json_encode($xiaomiWeight),
-            // "samsungData" => json_encode($samsungData),
-            // "appleData" => json_encode($appleData),
-            // "huaweiData" => json_encode($huaweiData),
-            // "xiaomiData" => json_encode($xiaomiData),
-            // "oppoData" => json_encode($oppoData)
         ]);
     }
 }
