@@ -268,7 +268,7 @@ openCompareButton.addEventListener('click', function(){
    // }
 
    // showCompareItems(p1,p2,p3);
-   window.open(`compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
+   window.open(`/compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
 
 });
 

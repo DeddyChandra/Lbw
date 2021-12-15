@@ -29,6 +29,7 @@ Route::get('/', function(){
 Route::get('/search', [PageController::class, 'view_search']);
 Route::get('/compare', [PageController::class, 'view_compare']);
 Route::get('/brands', [PageController::class, 'view_brands']);
+Route::get('/brands/show-all/{brand_slug}', [PageController::class, 'view_brands_detail']);
 Route::get('/latest', [PageController::class, 'view_latest']);
 Route::get('/top-by-interest', [PageController::class, 'view_topByInterest']);
 Route::get('/top-by-fans', [PageController::class, 'view_topByFans']);

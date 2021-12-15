@@ -24,22 +24,22 @@
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('search*') ? 'active' : '' }}" href="search">Search</a>
+                  <a class="nav-link {{ Request::is('search*') ? 'active' : '' }}" href="/search">Search</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('brands*') ? 'active' : '' }}" href="brands">Brands</a>
+                  <a class="nav-link {{ Request::is('brands*') ? 'active' : '' }}" href="/brands">Brands</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('latest*') ? 'active' : '' }}" href="latest">Latest</a>
+                  <a class="nav-link {{ Request::is('latest*') ? 'active' : '' }}" href="/latest">Latest</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('top-by-interest*') ? 'active' : '' }}" href="top-by-interest">Top By Interest</a>
+                  <a class="nav-link {{ Request::is('top-by-interest*') ? 'active' : '' }}" href="/top-by-interest">Top By Interest</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('top-by-fans*') ? 'active' : '' }}" href="top-by-fans">Top By Fans</a>
+                  <a class="nav-link {{ Request::is('top-by-fans*') ? 'active' : '' }}" href="/top-by-fans">Top By Fans</a>
                </li>
                <li class="nav-item">
-                  <a class="nav-link {{ Request::is('charts*') ? 'active' : '' }}" href="charts">Charts</a>
+                  <a class="nav-link {{ Request::is('charts*') ? 'active' : '' }}" href="/charts">Charts</a>
                </li>
             </ul>
          </div>

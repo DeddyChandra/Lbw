@@ -1,25 +1,25 @@
 @extends('layouts/layout')
 
 @section('content')
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Phone Specification</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-   </head>
-   <body>
-      <div class="container-fluid" style="height:1em"></div>
-      <div class="container-fluid mt-2 px-5">
-         <div class="row row-cols-3 phones-container" id="js-container">
-            
+   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+      <ol class="breadcrumb m-3">
+         <li class="breadcrumb-item">Brands</li>
+      </ol>
+   </nav>
+
+   <div class="container">
+      <div class="row mt-5">
+         <div class="col-md">
+            <div class="input-group mb-3">
+               <input type="text" class="form-control input-keyword" placeholder="Search brand">
+            </div>
          </div>
       </div>
-   </body>
-      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-      <script src="{{ asset('js/brand.js') }}" defer></script>
-   </html>
+      <div class="row phones-container" id="js-container"></div>
+   </div>
+   <script>
+      // console.log({!! $brandData !!});
+      let brandData = {!! $brandData !!};
+   </script>
+   <script src="{{ asset('js/brand.js') }}" defer></script>
 @endsection

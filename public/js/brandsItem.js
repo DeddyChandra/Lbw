@@ -178,100 +178,97 @@ function showLoading(show = true){
 }
 
 document.querySelector('.phones-container').innerHTML = showLoading();
-fetch('https://api-mobilespecs.azharimm.site/v2/latest')
-   .then(response => response.json())
-   .then(response => {
-      // const phones = response.
-      // console.log(response)
-      // console.log(response.data.phones)
-      const phones = response.data.phones;
-      let cards = "";
-      // console.log(phones[0]);
-      phones.forEach(p => cards += showCards(p));
-      // console.log(cards);
-      const phonesContainer = document.querySelector('.phones-container');
-      phonesContainer.innerHTML = cards;
+response = brandData;
+// const phones = response.
+// console.log(response)
+// console.log(response.data.phones)
+const phones = response.data.phones;
+let cards = "";
+// console.log(phones[0]);
+phones.forEach(p => cards += showCards(p));
+// console.log(cards);
+const phonesContainer = document.querySelector('.phones-container');
+phonesContainer.innerHTML = cards;
 
-      const modalDetailButton = document.querySelectorAll('.modal-detail-button');
-      modalDetailButton.forEach(btn => {
-         btn.addEventListener('click', function(){
-            const slug = this.dataset.slug;
-            fetch('https://api-mobilespecs.azharimm.site/v2/' + slug)
-               .then(response => response.json())
-               .then(response => {
-                  // console.log(response.data.phone_images[0]);
-                  const phoneDetail = showDetail(response.data);
+const modalDetailButton = document.querySelectorAll('.modal-detail-button');
+modalDetailButton.forEach(btn => {
+   btn.addEventListener('click', function(){
+      const slug = this.dataset.slug;
+      fetch('https://api-mobilespecs.azharimm.site/v2/' + slug)
+         .then(response => response.json())
+         .then(response => {
+            // console.log(response.data.phone_images[0]);
+            const phoneDetail = showDetail(response.data);
 
-                  const phoneDetailModal = document.querySelector('.phone-detail-modal');
-                  phoneDetailModal.innerHTML = phoneDetail;
+            const phoneDetailModal = document.querySelector('.phone-detail-modal');
+            phoneDetailModal.innerHTML = phoneDetail;
 
-                  const carouselItem = document.querySelectorAll('.carousel-item');
-                  carouselItem[0].classList.add('active');
-               })
+            const carouselItem = document.querySelectorAll('.carousel-item');
+            carouselItem[0].classList.add('active');
          })
-      })
-      const compareCheckbox = document.querySelectorAll('.compare');
-      const compareBadges = document.querySelector('.compareBadges');
-      compareCheckbox.forEach(item => {
-         // console.log(item)
-         item.addEventListener('change', function(){
-            if(this.checked){
-               if(compareItem.length >= 3){
-                  alert('Cannot compare more than 3 items at once!');
-                  this.checked = false;
+   })
+})
+const compareCheckbox = document.querySelectorAll('.compare');
+const compareBadges = document.querySelector('.compareBadges');
+compareCheckbox.forEach(item => {
+   // console.log(item)
+   item.addEventListener('change', function(){
+      if(this.checked){
+         if(compareItem.length >= 3){
+            alert('Cannot compare more than 3 items at once!');
+            this.checked = false;
+         }
+         else{
+            let span = document.createElement("span");
+            let icon = document.createElement("i");
+            icon.classList.add("fas");
+            icon.classList.add("fa-times-circle");
+            icon.classList.add("pointer");
+            icon.id = "delete_" + replacePlus(this.dataset.slug);
+            const slug = this.dataset.slug;
+            icon.addEventListener('click',function(){
+               removeCompareItem(slug);
+               if(compareItem.length == 0){
+                  openCompareButton.classList.add('invisible');
                }
                else{
-                  let span = document.createElement("span");
-                  let icon = document.createElement("i");
-                  icon.classList.add("fas");
-                  icon.classList.add("fa-times-circle");
-                  icon.classList.add("pointer");
-                  icon.id = "delete_" + replacePlus(this.dataset.slug);
-                  const slug = this.dataset.slug;
-                  icon.addEventListener('click',function(){
-                     removeCompareItem(slug);
-                     if(compareItem.length == 0){
-                        openCompareButton.classList.add('invisible');
-                     }
-                     else{
-                        openCompareButton.classList.remove('invisible');
-                     }
-                  })
-                  span.textContent = this.dataset.name + " ";
-                  span.appendChild(icon);
-                  span.classList.add("badge");
-                  span.classList.add("rounded-pill");
-                  span.classList.add("bg-success");
-                  span.classList.add("p-2");
-                  span.classList.add("mx-1");
-                  span.id = replacePlus(this.dataset.slug);
-                  compareBadges.appendChild(span);
-                  compareItem.push(replacePlus(this.dataset.slug));
-                  console.log(compareItem);
-
-
-                  // console.log(this.dataset.slug +  " checked");
+                  openCompareButton.classList.remove('invisible');
                }
-            }
-            else{
-               // const removeIndex = compareItem.indexOf(this.dataset.slug);
-               // compareItem.splice(removeIndex, 1);
-               // document.querySelector("#"+this.dataset.slug).remove();
-               removeCompareItem(this.dataset.slug);
-               // console.log(this.dataset.slug +  " unchecked");
-            }
-            
-            if(compareItem.length == 0){
-               openCompareButton.classList.add('invisible');
-            }
-            else{
-               openCompareButton.classList.remove('invisible');
-            }
-            // totalCompareBadge.textContent = compareItem.length;
+            })
+            span.textContent = this.dataset.name + " ";
+            span.appendChild(icon);
+            span.classList.add("badge");
+            span.classList.add("rounded-pill");
+            span.classList.add("bg-success");
+            span.classList.add("p-2");
+            span.classList.add("mx-1");
+            span.id = replacePlus(this.dataset.slug);
+            compareBadges.appendChild(span);
+            compareItem.push(replacePlus(this.dataset.slug));
             console.log(compareItem);
-         })
-      })
-   });
+
+
+            // console.log(this.dataset.slug +  " checked");
+         }
+      }
+      else{
+         // const removeIndex = compareItem.indexOf(this.dataset.slug);
+         // compareItem.splice(removeIndex, 1);
+         // document.querySelector("#"+this.dataset.slug).remove();
+         removeCompareItem(this.dataset.slug);
+         // console.log(this.dataset.slug +  " unchecked");
+      }
+      
+      if(compareItem.length == 0){
+         openCompareButton.classList.add('invisible');
+      }
+      else{
+         openCompareButton.classList.remove('invisible');
+      }
+      // totalCompareBadge.textContent = compareItem.length;
+      console.log(compareItem);
+   })
+})
 
 openCompareButton.addEventListener('click', function(){
    window.open(`/compare?p0=${compareItem[0]}&p1=${compareItem[1] == undefined? "" : compareItem[1]}&p2=${compareItem[2] == undefined? "" : compareItem[2]}`);
