@@ -143,15 +143,15 @@ function allWeightCharts(){
       type: 'line',
       data: data,
       options: {
-         animations: {
-            tension: {
-               duration: 3000,
-               easing: 'linear',
-               from: 1,
-               to: 0,
-               loop: true
-            }
-         },
+         // animations: {
+         //    tension: {
+         //       duration: 3000,
+         //       easing: 'linear',
+         //       from: 1,
+         //       to: 0,
+         //       loop: true
+         //    }
+         // },
          responsive: true,
          plugins: {
             legend: {
@@ -205,7 +205,9 @@ async function main(){
    const asusBrand = allBrands.data.find(o => o.brand_slug === 'asus-phones-46');
 
    const brandData = [samsungBrand.device_count, huaweiBrand.device_count, appleBrand.device_count, oppoBrand.device_count, xiaomiBrand.device_count, vivoBrand.device_count, lenovoBrand.device_count, lgBrand.device_count, realmeBrand.device_count, asusBrand.device_count];
-
+   // console.log(brandData);
+   // brandData.sort();
+   // console.log(brandData);
    const brandsChartE = document.getElementById('brandsChart').getContext('2d');
    const brandsChart = new Chart(brandsChartE, {
       type: 'bar',
