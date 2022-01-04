@@ -514,3 +514,21 @@ HorizontalBarChart('huaweiBatteryChart', huawei['name'], huawei['battery'], 'Hua
 HorizontalBarChart('oppoBatteryChart', oppo['name'], oppo['battery'], 'Oppo devices battery');
 HorizontalBarChart('xiaomiBatteryChart', xiaomi['name'], xiaomi['battery'], 'Xiaomi devices battery');
 allBatteryAvarege();
+
+function brut(){
+   fetch('https://api-mobilespecs.azharimm.site/v2/brands')
+   .then(response => response.json())
+   .then(response => response);
+   return fetch('http://phone-spec-api.deddychandra.my.id/v2/brands')
+      .then(response => response.json())
+      .then(response => response);
+}
+
+async function test(){
+   for(let i = 0; i < 150; i++){
+      await brut();
+      console.log("done");
+   }
+}
+
+test();
