@@ -213,15 +213,15 @@ function allWeightCharts(){
       type: 'line',
       data: data,
       options: {
-         animations: {
-            tension: {
-               duration: 3000,
-               easing: 'linear',
-               from: 1,
-               to: 0,
-               loop: true
-            }
-         },
+         // animations: {
+         //    tension: {
+         //       duration: 3000,
+         //       easing: 'linear',
+         //       from: 1,
+         //       to: 0,
+         //       loop: true
+         //    }
+         // },
          responsive: true,
          plugins: {
             legend: {
@@ -439,14 +439,60 @@ async function main(){
    const lgBrand = allBrands.data.find(o => o.brand_slug === 'lg-phones-20');
    const realmeBrand = allBrands.data.find(o => o.brand_slug === 'realme-phones-118');
    const asusBrand = allBrands.data.find(o => o.brand_slug === 'asus-phones-46');
-
+   
    const brandData = [samsungBrand.device_count, huaweiBrand.device_count, appleBrand.device_count, oppoBrand.device_count, xiaomiBrand.device_count, vivoBrand.device_count, lenovoBrand.device_count, lgBrand.device_count, realmeBrand.device_count, asusBrand.device_count];
+   console.log(brandData);
+   // sorting high to low number of devices per brand
+   brandData.sort(function(a, b) {
+      return b - a;
+   });
 
+   // sorting the brand name 
+   let brandSort = ['0','1','2','3','4','5','6','7','8','9'];
+   console.log(brandData[0]);
+   console.log(samsungBrand);
+   for(let i = 0; i < 10; i++){
+      if(brandData[i] == samsungBrand.device_count){
+         brandSort[i] = "samsung";
+         console.log(brandSort[i]);
+      }
+      else if(brandData[i] == huaweiBrand.device_count){
+         brandSort[i] = "huawei";
+      }
+      else if(brandData[i] == appleBrand.device_count){
+         brandSort[i] = "apple";
+      }
+      else if(brandData[i] == oppoBrand.device_count){
+         brandSort[i] = "oppo";
+      }
+      else if(brandData[i] == xiaomiBrand.device_count){
+         brandSort[i] = "xiamomi";
+      }
+      else if(brandData[i] == vivoBrand.device_count){
+         brandSort[i] = "vivo";
+      }
+      else if(brandData[i] == lenovoBrand.device_count){
+         brandSort[i] = "lenovo";
+      }
+      else if(brandData[i] == lgBrand.device_count){
+         brandSort[i] = "lg";
+      }
+      else if(brandData[i] == realmeBrand.device_count){
+         brandSort[i] = "realme";
+      }
+      else if(brandData[i] == asusBrand.device_count){
+         brandSort[i] = "asus";
+      }
+      
+   }   
+   
+
+   
    const brandsChartE = document.getElementById('brandsChart').getContext('2d');
    const brandsChart = new Chart(brandsChartE, {
       type: 'bar',
       data: {
-         labels: ['Samsung', 'Huawei', 'Apple', 'Oppo', 'Xiaomi', 'Vivo', 'Lenovo', 'LG', 'Realme', 'Asus'],
+         labels: [brandSort[0], brandSort[1], brandSort[2], brandSort[3], brandSort[4], brandSort[5], brandSort[6], brandSort[7], brandSort[8], brandSort[9]],
          datasets: [
          {
             label: 'Total device',
