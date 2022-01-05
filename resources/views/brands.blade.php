@@ -10,9 +10,7 @@
    <div class="container">
       <div class="row mt-5">
          <div class="col-md">
-            <div class="input-group mb-3">
-               <input type="text" class="form-control input-keyword" placeholder="Search brand">
-            </div>
+         
          </div>
       </div>
 
