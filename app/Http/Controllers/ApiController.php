@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\samsung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -11,14 +12,19 @@ class ApiController extends Controller{
     }
 
     function api_samsung(){
+        $samsung = new samsung();
+        dd($samsung->getData());
         ini_set('max_execution_time', 0);
-        Cache::forget('samsung_phone_specs');
+        // Cache::forget('samsung_phone_specs');
         if(Cache::get('samsung_phone_specs') == null){
             $brand = file_get_contents('https://api-mobilespecs.azharimm.site/v2/brands/samsung-phones-9');
             $brand = json_decode($brand);
             $data = [];
             foreach($brand->data->phones as $key => $item){
                 $data[] = json_decode(file_get_contents($item->detail));
+                if($key == 20){
+                    break;
+                }
             }
             Cache::forever('samsung_phone_specs', json_encode($data));
         }

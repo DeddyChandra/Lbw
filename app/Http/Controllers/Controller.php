@@ -28,29 +28,42 @@ class Controller extends BaseController
     }
 
     function getData($brand){
-        $result['totalWeight'] = 0;
-        $result['countProperWeight'] = 0;
-        $result['totalBattery'] = 0;
-        $result['countProperBattery'] = 0;
-        foreach($brand as $key => $item){
-            $result['name'][$key] = $item->data->phone_name; 
+        foreach($brand as $year => $items){
+            $result[$year]['totalWeight'] = 0;
+            $result[$year]['countProperWeight'] = 0;
+            $result[$year]['totalBattery'] = 0;
+            $result[$year]['countProperBattery'] = 0;
+            // dd($items);
+            foreach($items as $key => $item){
+                $result[$year]['name'][$key] = $item->data->phone_name;
 
-            $weight = $item->data->specifications[2]->specs[1]->val[0];
-            $weightInt = $this->getWeight($weight);
-            $result['weight'][$key] = $weightInt;
-            $result['totalWeight'] += (int) $weightInt;
-            if($weightInt > 0){
-                $result['countProperWeight']++;
+                $weight = $item->data->specifications[2]->specs[1]->val[0];
+                $weightInt = $this->getWeight($weight);
+                $result[$year]['weight'][$key] = $weightInt;
+                $result[$year]['totalWeight'] += (int) $weightInt;
+                if($weightInt > 0){
+                    $result[$year]['countProperWeight']++;
+                }
+
+                $battery = $item->data->specifications[11]->specs[0]->val[0];
+                $batteryInt = $this->getBattery($battery);
+                $result[$year]['battery'][$key] = $batteryInt;
+                $result[$year]['totalBattery'] += (int) $batteryInt;
+                if($batteryInt > 0){
+                    $result[$year]['countProperBattery']++;
+                }
             }
+        }
+        // dd($result);
+        return $result;
+    }
 
-            $battery = $item->data->specifications[11]->specs[0]->val[0];
-            $batteryInt = $this->getBattery($battery);
-            $result['battery'][$key] = $batteryInt;
-            $result['totalBattery'] += (int) $batteryInt;
-            if($batteryInt > 0){
-                $result['countProperBattery']++;
+    function getDataFromDetail($data){
+        $result = [];
+        foreach($data as $key => $items){
+            foreach($items as $key2 => $item){
+                $result[$key][$key2] = json_decode(file_get_contents($item));
             }
-
         }
         return $result;
     }

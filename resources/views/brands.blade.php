@@ -15,10 +15,9 @@
             </div>
          </div>
       </div>
-
-      
       {{-- Content collumn divider --}}
-      <div class="row mb-3">
+      <div class="row phones-container" id="js-container"></div>
+        {{-- <div class="row mb-3">
          <div class="col">
          </div>
          <div class="col text-center">
@@ -35,10 +34,7 @@
          </div>
          <div class="col">
          </div>
-      </div>
-
-
-      <div class="row phones-container" id="js-container"></div>
+      </div> --}}
    </div>
    <script>
       // console.log({!! $brandData !!});

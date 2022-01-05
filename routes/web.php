@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // api
-Route::get('/api/samsung', [ApiController::class, 'api_samsung']);
-Route::get('/api/apple', [ApiController::class, 'api_apple']);
-Route::get('/api/huawei', [ApiController::class, 'api_huawei']);
-Route::get('/api/oppo', [ApiController::class, 'api_oppo']);
-Route::get('/api/xiaomi', [ApiController::class, 'api_xiaomi']);
-Route::get('/api/clear', [ApiController::class, 'clear_api_cache']);
-Route::get('/brand/{brand_slug}', [BrandController::class]);
+// Route::get('/api/samsung', [ApiController::class, 'api_samsung']);
+// Route::get('/api/apple', [ApiController::class, 'api_apple']);
+// Route::get('/api/huawei', [ApiController::class, 'api_huawei']);
+// Route::get('/api/oppo', [ApiController::class, 'api_oppo']);
+// Route::get('/api/xiaomi', [ApiController::class, 'api_xiaomi']);
+// Route::get('/api/clear', [ApiController::class, 'clear_api_cache']);
+// Route::get('/brand/{brand_slug}', [BrandController::class]);
 //page
 Route::get('/', function(){
     return redirect('/search');
