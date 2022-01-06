@@ -23,36 +23,6 @@
             </div>
             <div class="col-1"></div>
         </div>
-        {{-- <div class="row my-2">
-            <div class="col-1"></div>
-            <div class="col" height="500">
-                <canvas id="averageWeightChart" width="500" height="500"></canvas>
-            </div>
-            <div class="col-1"></div>
-        </div> --}}
-        {{-- <div class="row my-2">
-            <div class="col-6" height="400">
-                <canvas id="samsungWeightChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6" height="300">
-                <canvas id="appleWeightChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-6" height="300">
-                <canvas id="huaweiWeightChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6" height="300">
-                <canvas id="oppoWeightChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-2"></div>
-            <div class="col" height="300">
-                <canvas id="xiaomiWeightChart" width="300" height="200"></canvas>
-            </div>
-            <div class="col-2"></div>
-        </div> --}}
         <div class="row my-5">
             <div class="col-1"></div>
             <div class="col" height="400">
@@ -62,36 +32,6 @@
             </div>
             <div class="col-1"></div>
         </div>
-        {{-- <div class="row my-2">
-            <div class="col-1"></div>
-            <div class="col" height="500">
-                <canvas id="averageBatteryChart" width="500" height="500"></canvas>
-            </div>
-            <div class="col-1"></div>
-        </div>
-        <div class="row my-2">
-            <div class="col-6" height="400">
-                <canvas id="samsungBatteryChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6" height="300">
-                <canvas id="appleBatteryChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-6" height="300">
-                <canvas id="huaweiBatteryChart" width="300" height="300"></canvas>
-            </div>
-            <div class="col-6" height="300">
-                <canvas id="oppoBatteryChart" width="300" height="300"></canvas>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-2"></div>
-            <div class="col" height="300">
-                <canvas id="xiaomiBatteryChart" width="300" height="200"></canvas>
-            </div>
-            <div class="col-2"></div>
-        </div> --}}
         <div class="row my-5">
             <div class="col-1"></div>
             <div class="col" height="400">
@@ -108,7 +48,6 @@
         const huawei = {!! $huawei !!};
         const oppo = {!! $oppo !!};
         const xiaomi = {!! $xiaomi !!};
-        // console.log(samsungWeight);
     </script>
     <script src="{{ asset('js/chart.js') }}"></script>
 @endsection

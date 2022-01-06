@@ -23,7 +23,7 @@ class PageController extends Controller{
         if(Cache::get('brand-data') == null){
             $brandData = file_get_contents('https://api-mobilespecs.azharimm.site/v2/brands');
             $brandData = json_encode($brandData);
-            Cache::forever('brand-data', $brandData);
+            Cache::put('brand-data', $brandData, $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $brandData = Cache::get('brand-data');
@@ -38,7 +38,7 @@ class PageController extends Controller{
         if(Cache::get($brand_slug) == null){
             $brandData = file_get_contents('https://api-mobilespecs.azharimm.site/v2/brands/'.$brand_slug);
             $brandData = json_encode($brandData);
-            Cache::forever($brand_slug, $brandData);
+            Cache::put($brand_slug, $brandData, $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $brandData = Cache::get($brand_slug);
@@ -96,7 +96,6 @@ class PageController extends Controller{
         else{
             $huaweiData = Cache::get('huawei_data');
         }
-        // dd($huaweiData);
 
         $xiaomi = new xiaomi();
         if(Cache::get('xiaomi_data') == null){
@@ -118,7 +117,6 @@ class PageController extends Controller{
 
         // dd($samsungData, $appleData, $huaweiData);
         // dd($samsungData, $appleData, $huaweiData, $xiaomiData, $oppoData);
-        // $this->getData($samsungData);
 
         return view('charts',[
             'samsung' => json_encode($this->getData($samsungData)),

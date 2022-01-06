@@ -26,7 +26,7 @@ class ApiController extends Controller{
                     break;
                 }
             }
-            Cache::forever('samsung_phone_specs', json_encode($data));
+            Cache::put('samsung_phone_specs', json_encode($data), $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $data = Cache::get('samsung_phone_specs');
@@ -48,7 +48,7 @@ class ApiController extends Controller{
                     break;
                 }
             }
-            Cache::forever('apple_phone_specs', json_encode($data));
+            Cache::put('apple_phone_specs', json_encode($data), $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $data = Cache::get('apple_phone_specs');
@@ -70,7 +70,7 @@ class ApiController extends Controller{
                     break;
                 }
             }
-            Cache::forever('huawei_phone_specs', json_encode($data));
+            Cache::put('huawei_phone_specs', json_encode($data), $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $data = Cache::get('huawei_phone_specs');
@@ -92,7 +92,7 @@ class ApiController extends Controller{
                     break;
                 }
             }
-            Cache::forever('oppo_phone_specs', json_encode($data));
+            Cache::put('oppo_phone_specs', json_encode($data), $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $data = Cache::get('oppo_phone_specs');
@@ -114,7 +114,7 @@ class ApiController extends Controller{
                     break;
                 }
             }
-            Cache::forever('xiaomi_phone_specs', json_encode($data));
+            Cache::put('xiaomi_phone_specs', json_encode($data), $seconds = 365 * 24 * 60 * 60);
         }
         else{
             $data = Cache::get('xiaomi_phone_specs');

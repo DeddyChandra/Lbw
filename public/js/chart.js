@@ -167,11 +167,9 @@ function allWeightAvarege(){
 
 function getWeightPerYear(data){
     let result = [];
-    // console.log(data);
     Object.keys(data).forEach(element => {
         result.push(data[element].totalWeight / data[element].countProperWeight);
     });
-    // console.log(result);
     return result;
 }
 
@@ -263,11 +261,9 @@ function allWeightCharts(){
 
 function getBatteryPerYear(data){
     let result = [];
-    // console.log(data);
     Object.keys(data).forEach(element => {
         result.push(data[element].totalBattery / data[element].countProperBattery);
     });
-    // console.log(result);
     return result;
 }
 
@@ -371,76 +367,6 @@ function allBatteryCharts(){
     batteryChartLoading.classList.remove('mt-5');
 }
 
-// function allBatteryAvarege(){
-//     let batteryData = [
-//         samsung['totalBattery'] / samsung['countProperBattery'],
-//         apple['totalBattery'] / apple['countProperBattery'],
-//         huawei['totalBattery'] / huawei['countProperBattery'],
-//         oppo['totalBattery'] / oppo['countProperBattery'],
-//         xiaomi['totalBattery'] / samsung['countProperBattery'],
-//     ];
-
-//     const brandsChartE = document.querySelector('#averageBatteryChart').getContext('2d');
-//     const brandsChart = new Chart(brandsChartE, {
-//         type: 'pie',
-//         data: {
-//             labels: ['Samsung', 'Apple', 'Huawei', 'Oppo', 'Xiaomi'],
-//             datasets: [
-//             {
-//                 label: '',
-//                 data: batteryData,
-//                 backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)',
-//                 'rgba(204, 204, 255, 0.2)',
-//                 'rgba(64, 224, 208, 0.2)',
-//                 'rgba(255, 127, 80, 0.2)',
-//                 'rgba(222, 49, 99, 0.2)',
-//                 ],
-//                 borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)',
-//                 'rgba(204, 204, 255, 1)',
-//                 'rgba(64, 224, 208, 1)',
-//                 'rgba(255, 127, 80, 1)',
-//                 'rgba(222, 49, 99, 1)',
-//                 ],
-//                 borderWidth: 1
-//             }
-//         ],
-//         hoverOffset: 4
-//         },
-//         options: {
-//             indexAxis: 'y',
-//             maintainAspectRatio : false,
-//             responsive: true,
-//             elements: {
-//                 bar: {
-//                 borderWidth: 2,
-//                 }
-//             },
-//             responsive: true,
-//             plugins: {
-//                 legend: {
-//                 display: true
-//                 },
-//                 title: {
-//                 display: true,
-//                 text: "Averege Brands battery"
-//                 }
-//             },
-//         }
-//     });
-// }
-
 async function main(){
     const allBrands = await getAllBrands();
     const samsungBrand = allBrands.data.find(o => o.brand_slug === 'samsung-phones-9');
@@ -455,7 +381,6 @@ async function main(){
     const asusBrand = allBrands.data.find(o => o.brand_slug === 'asus-phones-46');
 
     const brandData = [samsungBrand.device_count, huaweiBrand.device_count, appleBrand.device_count, oppoBrand.device_count, xiaomiBrand.device_count, vivoBrand.device_count, lenovoBrand.device_count, lgBrand.device_count, realmeBrand.device_count, asusBrand.device_count];
-    // console.log(brandData);
     // sorting high to low number of devices per brand
     brandData.sort(function(a, b) {
         return b - a;
@@ -463,12 +388,9 @@ async function main(){
 
    // sorting the brand name
     let brandSort = ['0','1','2','3','4','5','6','7','8','9'];
-    // console.log(brandData[0]);
-    // console.log(samsungBrand);
     for(let i = 0; i < 10; i++){
         if(brandData[i] == samsungBrand.device_count){
             brandSort[i] = "samsung";
-            // console.log(brandSort[i]);
         }
         else if(brandData[i] == huaweiBrand.device_count){
             brandSort[i] = "huawei";
@@ -567,7 +489,6 @@ function getScatterData(data){
             result.push(device);
         }
     });
-    // console.log(result);
     return result;
 }
 
@@ -654,17 +575,5 @@ function scatterChart(){
 
 main();
 allWeightCharts();
-// allWeightAvarege();
-// HorizontalBarChart('samsungWeightChart', samsung['name'], samsung['weight'], 'Samsung devices weight');
-// HorizontalBarChart('appleWeightChart', apple['name'], apple['weight'], 'Apple devices weight');
-// HorizontalBarChart('huaweiWeightChart', huawei['name'], huawei['weight'], 'Huawei devices weight');
-// HorizontalBarChart('oppoWeightChart', oppo['name'], oppo['weight'], 'Oppo devices weight');
-// HorizontalBarChart('xiaomiWeightChart', xiaomi['name'], xiaomi['weight'], 'Xiaomi devices weight');
 allBatteryCharts();
-// HorizontalBarChart('samsungBatteryChart', samsung['name'], samsung['battery'], 'Samsung devices battery');
-// HorizontalBarChart('appleBatteryChart', apple['name'], apple['battery'], 'Apple devices battery');
-// HorizontalBarChart('huaweiBatteryChart', huawei['name'], huawei['battery'], 'Huawei devices battery');
-// HorizontalBarChart('oppoBatteryChart', oppo['name'], oppo['battery'], 'Oppo devices battery');
-// HorizontalBarChart('xiaomiBatteryChart', xiaomi['name'], xiaomi['battery'], 'Xiaomi devices battery');
-// allBatteryAvarege();
 scatterChart()
