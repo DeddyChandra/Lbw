@@ -59,7 +59,7 @@ function getApiInformation(a){
             temp = responseJson[k];
             // jsonRes += '<div class="col text-center">'+ temp.brand_name +'</div>'
             jsonRes += '<div class="mb-3 col-3">';
-            jsonRes += '<div class="card" style="width: 18rem;">';
+            jsonRes += '<div class="card">';
             // jsonRes += '<img src="..." class="card-img-top" alt="...">';
             jsonRes += '<div class="card-body">';
             jsonRes += '<h5 class="card-title text-capitalize">' + temp.brand_name + '</h5>';

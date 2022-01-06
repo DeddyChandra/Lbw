@@ -58,7 +58,7 @@ class Controller extends BaseController
         return $result;
     }
 
-    function getDataFromDetail($data){
+    function    getDataFromDetail($data){
         $result = [];
         foreach($data as $key => $items){
             foreach($items as $key2 => $item){

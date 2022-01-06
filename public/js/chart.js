@@ -557,7 +557,7 @@ async function main(){
 
 function getScatterData(data){
     let result = [];
-    // console.log(data);
+    console.log(data);
     Object.keys(data).forEach(element => {
         // console.log(data[element].battery[0]);
         for(let i = 0; i < 5; i++){
@@ -567,7 +567,7 @@ function getScatterData(data){
             result.push(device);
         }
     });
-    console.log(result);
+    // console.log(result);
     return result;
 }
 

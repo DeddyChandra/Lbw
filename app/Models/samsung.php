@@ -16,7 +16,7 @@ class samsung extends Model{
         $data['2021'] = [
             'http://api-mobilespecs.azharimm.site/v2/samsung_galaxy_tab_a8_10_5_(2021)-11265',
             'http://api-mobilespecs.azharimm.site/v2/samsung_galaxy_a13_5g-11149',
-            'http://api-mobilespecs.azharimm.site/v2/samsung_galaxy_a03-11244',
+            'https://api-mobilespecs.azharimm.site/v2/samsung_galaxy_a32_5g-10648',
             'http://api-mobilespecs.azharimm.site/v2/samsung_galaxy_a03_core-11215',
             'http://api-mobilespecs.azharimm.site/v2/samsung_galaxy_f42_5g-11124'
         ];

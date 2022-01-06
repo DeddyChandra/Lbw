@@ -96,6 +96,7 @@ class PageController extends Controller{
         else{
             $huaweiData = Cache::get('huawei_data');
         }
+        // dd($huaweiData);
 
         $xiaomi = new xiaomi();
         if(Cache::get('xiaomi_data') == null){
