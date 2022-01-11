@@ -481,7 +481,6 @@ function getScatterData(data){
     let result = [];
     console.log(data);
     Object.keys(data).forEach(element => {
-        // console.log(data[element].battery[0]);
         for(let i = 0; i < 5; i++){
             let device = [];
             device.push(data[element].battery[i]);
@@ -576,4 +575,5 @@ function scatterChart(){
 main();
 allWeightCharts();
 allBatteryCharts();
-scatterChart()
+scatterChart();
+ 
