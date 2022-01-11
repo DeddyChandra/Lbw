@@ -576,4 +576,4 @@ main();
 allWeightCharts();
 allBatteryCharts();
 scatterChart();
- 
+
